@@ -4,8 +4,8 @@ Welcome to my professional portfolio website! This repository contains the sourc
 
 ## Live Demo
 
-You can visit my portfolio <a href="https://codeviith.github.io/" target="_blank">here</a>.
-<!-- You can visit my portfolio [here](https://codeviith.github.io/). -->
+You can visit my portfolio <a href="https://codeviith.github.io/software" target="_blank">here</a>.
+<!-- You can visit my portfolio [here](https://codeviith.github.io/software). -->
 
 ## Table of Contents
 
@@ -14,6 +14,7 @@ You can visit my portfolio <a href="https://codeviith.github.io/" target="_blank
 - [Technologies Used](#technologies-used)
 - [Contact](#contact)
 - [License](#license)
+- [Credits](#credits)
 
 ## About
 
@@ -77,4 +78,6 @@ Feel free to reach out to me via the contact form on my portfolio website or thr
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
 ## Credits
+- Designed and developed by Kevin Lin.
+
 &copy; 2024 Kevin Lin. All rights reserved.
