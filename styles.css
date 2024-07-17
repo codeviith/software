@@ -1,0 +1,876 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+}
+
+header {
+    background: #333;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: relative;
+}
+
+section {
+    padding: 1rem 2rem;
+}
+
+h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+}
+
+.project {
+    background: #fff;
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.position {
+    font-size: large;
+}
+
+.profile-photo {
+    width: 150px;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #dde803;  /* profile photo border color */
+}
+
+#testimonials {
+    padding: 2rem;
+    background-color: #f9f9f9;
+}
+
+.testimonial {
+    border-left: 4px solid #333;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.gallery {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.gallery img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+/* CSS variables for themes */
+:root {
+    --bg-color-light: #ffffff;
+    --text-color-light: #000000;
+    --bg-color-dark: #333333;
+    --text-color-dark: #ffffff;
+    --toc-bg-color-light: #f4f4f4;
+    --toc-text-color-light: #000000;
+    --toc-bg-color-dark: #1e1e1e;
+    --toc-text-color-dark: #ffffff;
+    --button-bg-light: #333333;
+    --button-text-light: #ffffff;
+    --button-bg-dark: #555555;
+    --button-text-dark: #ffffff;
+    --link-color-light: darkblue;
+    --link-color-dark: rgb(4, 224, 240);
+    --snippet-bg-color-light: #ececec;
+    --snippet-text-color-light: #000000;
+    --snippet-bg-color-dark: #1b1b1b;
+    --snippet-text-color-dark: #ebebeb;
+}
+
+
+
+
+
+
+/* Styles for the Table of Contents */
+.toc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 100vh;
+    background-color: var(--toc-bg-color-dark);
+    color: var(--toc-text-color-dark);
+    padding: 0.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    font-size: 0.9rem;
+}
+
+.toc h2 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+.toc nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.toc nav ul li {
+    margin: 0.3rem 0;
+}
+
+.toc nav ul li a {
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.toc nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Add padding to body so content don't get hidden under TOC */
+body {
+    padding-left: 200px;
+}
+
+
+
+
+
+
+/* justify text for about and projects section */
+#about p {
+    text-align: justify;
+}
+
+#projects p {
+    text-align: justify;
+}
+
+
+/* color for hRef links */
+#contactInfo a {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+#contactInfo a:hover {
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+
+
+/* CSS for Lightbox */
+
+/* Lightbox styles */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* lightbox navigation */
+.close {
+    position: absolute;
+    top: 30px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    transition: 0.6s ease;
+    user-select: none;
+}
+
+.prev {
+    left: 0;
+    border-radius: 0 3px 3px 0;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* prevent scrolling while inside lightbox */
+.no-scroll {
+    overflow: hidden;
+}
+
+
+
+
+/* hRef link buttons */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button:hover {
+    /* background-color: #555; */
+    text-decoration: underline;
+}
+
+.certificate-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.certificate-button {
+    display: inline-block;
+    padding: 5px 5px;
+    margin: 0;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.certificate-button:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+/* skills progress bar */
+.skill {
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    background-color: #8d8d8d;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+}
+
+.progress {
+    position: relative;
+    height: 20px;
+    /* width: 0; */
+    border-radius: 20px;
+    transition: width 3s ease-in-out;
+}
+
+.progress:hover {
+    transform: scale(1.1);
+}
+
+
+.skill p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.progress-bar:hover .progress {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.progress-bar {
+    position: relative;
+}
+
+.progress::after {
+    content: attr(data-width) '%';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.progress-bar:hover .progress::after {
+    opacity: 1;
+}
+
+
+
+
+/* project code snippet */
+
+.code-snippets {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.code-block {
+    background-color: inherit;
+    border: 1.5px solid #898888;
+    border-radius: 5px;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+.code-block h4 {
+    margin-top: 0;
+}
+
+pre {
+    margin: 0;
+    font-family: monospace;
+}
+
+code {
+    display: block;
+    white-space: pre-wrap;
+}
+
+.code-snippet-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+#actual-problem-code {
+    font-size: 20px;
+}
+
+
+
+
+
+
+
+/* github contributions and certification badges */
+
+/* #github-contributions {
+    padding: 1rem 2rem;
+    text-align: center;
+} */
+
+#github-contributions img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+}
+
+#certifications img {
+    margin-left: 10px;
+    vertical-align: middle;
+    height: 24px;
+}
+
+.dark-background-github-chart {
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+    display: inline-block; /* this code ensure that the dark background wraps around the image tightly */
+}
+
+.github-contributions-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 20px;
+}
+
+.dark-background-github-chart,
+.github-streak-container,
+.github-stats-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+/* testimonials */
+
+.sub-header-testimonial-container {
+    text-align: center;
+}
+
+.sub-header-testimonial {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+    justify-content: center;
+    text-decoration: underline;
+}
+
+
+
+/* hobbies */
+
+.sub-header-hobbies {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+    /* text-transform: uppercase; */
+    text-decoration: underline;
+    margin-left: -20px;
+}
+
+#hobbies ul {
+    padding-left: 20px;
+}
+
+#hobbies ul li {
+    margin: 5px 0;
+}
+
+
+
+
+/* CSS for animations */
+
+/* fade in and out of view with each scroll */
+.fade-in {
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.fade-in.show {
+    opacity: 1;
+}
+
+/* hover effects */
+.button:hover {
+    background-color: #555;
+    transform: scale (1.05);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.project:hover {
+    transform: translateY(-10px);
+    transition: transform 0.3s ease;
+}
+
+/* smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+
+/* timeline CSS */
+
+.timeline {
+    position: relative;
+    padding: 20px 0;
+    list-style: none;
+}
+
+.timeline-item {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 40px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 10px;
+    height: 10px;
+    background: var(--timeline-mark-color, #333);
+    border-radius: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 24px;
+    width: 2px;
+    height: 100%;
+    background: var(--timeline-line-color, #333);
+}
+
+.timeline-item:last-child::after {
+    content: none;
+}
+
+.timeline-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.timeline-photo {
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+}
+
+.timeline-item img {
+    display: block;
+    margin-top: 10px;
+    max-width: 100%; /* Ensure the image does not overflow the container */
+    height: auto; /* Maintain the image aspect ratio */
+}
+
+
+
+
+
+/* Light mode styles */
+body.light-mode {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    --timeline-mark-color: #333;
+    --timeline-line-color: #333;
+}
+
+body.light-mode h2 {
+    border-bottom: 2px solid #333;
+}
+
+body.light-mode .progress-bar {
+    background-color: #dddddd;
+}
+
+body.light-mode .progress {
+    color: #000000;
+}
+
+body.light-mode #projects {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    border-color: #444444;
+}
+
+body.light-mode .project {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    border-color: #444444;
+}
+
+body.light-mode #testimonials {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    border-left-color: var(--bg-color-dark);
+}
+
+body.light-mode .testimonial {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    border-left-color: var(--bg-color-dark);
+}
+
+body.light-mode .recommendation {
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    border-left-color: #444444;
+}
+
+body.light-mode #contactInfo a {
+    color: var(--link-color-light);
+}
+
+body.light-mode .button,
+body.light-mode .certificate-button {
+    background-color: var(--button-bg-light);
+    color: var(--button-text-light);
+}
+
+body.light-mode .button:hover,
+body.light-mode .certificate-button:hover {
+    background-color: #555;
+}
+
+body.light-mode .toc {
+    background-color: var(--toc-bg-color-light);
+    color: var(--toc-text-color-light);
+}
+
+body.light-mode .toc nav ul li a {
+    color: var(--toc-text-color-light);
+}
+
+body.light-mode .code-snippets {
+    background-color: var(--snippet-bg-color-light);
+    color: var(--snippet-text-color-light);
+}
+
+body.light-mode .code-block code {
+    color: var(--snippet-text-color-dark);
+    background-color: var(--snippet-bg-color-dark);
+}
+
+body.light-mode .code-snippets code {
+    color: var(--snippet-text-color-dark);
+    background-color: var(--bg-color-dark);
+}
+
+body.light-mode #solution-code {
+    color: var(--snippet-text-color-dark);
+    background-color: var(--bg-color-dark);
+}
+
+body.light-mode #problem-code {
+    color: var(--snippet-text-color-dark);
+    background-color: var(--snippet-bg-color-light);
+}
+
+body.light-mode #actual-problem-code {
+    color: var(--text-color-light);
+    background-color: var(--snippet-bg-color-light);
+}
+
+
+
+
+
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    --timeline-mark-color: #fff;
+    --timeline-line-color: #fff;
+}
+
+body.dark-mode h2 {
+    border-bottom: 2px solid #fff;
+}
+
+body.dark-mode .progress-bar {
+    background-color: #000000;
+}
+
+body.dark-mode .progress {
+    color: #ffffff;
+}
+
+body.dark-mode #projects {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    border-color: #444444;
+}
+
+body.dark-mode .project {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    border-color: #e6e6e6;
+}
+
+body.dark-mode #testimonials {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    border-left-color: var(--bg-color-light);;
+}
+
+body.dark-mode .testimonial {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    border-left-color: var(--bg-color-light);;
+}
+
+body.dark-mode .recommendation {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
+    border-left-color: #444444;
+}
+
+body.dark-mode #contactInfo a {
+    color: var(--link-color-dark);
+}
+
+body.dark-mode .button,
+body.dark-mode .certificate-button {
+    background-color: var(--button-bg-dark);
+    color: var(--button-text-dark);
+}
+
+body.dark-mode .button:hover,
+body.dark-mode .certificate-button:hover {
+    background-color: #777;
+}
+
+body.dark-mode .toc {
+    background-color: var(--toc-bg-color-dark);
+    color: var(--toc-text-color-dark);
+}
+
+body.dark-mode .toc nav ul li a {
+    color: var(--toc-text-color-dark);
+}
+
+body.dark-mode .code-snippets {
+    background-color: black;
+    color: var(--snippet-text-color-dark);
+}
+
+body.dark-mode .code-block code {
+    color: var(--snippet-text-color-dark);
+    background-color: black;
+}
+
+body.dark-mode .code-snippets code {
+    color: var(--snippet-text-color-dark);
+    background-color: black;
+}
+
+body.dark-mode #solution-code {
+    color: var(--snippet-text-color-dark);
+    background-color: black;
+}
+
+
+
+
+
+/* button styles */
+
+/* button container */
+.theme-toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto; /* Push container to bottom of TOC */
+    padding: 1rem;
+    text-align: center;
+}
+
+.mode-label {
+    display: flex;
+    gap: 10px;
+}
+
+/* Default */
+.mode-label button {
+    background-color: lightgray;
+    margin: 0;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Active */
+.mode-label button.active {
+    background-color: aqua;
+}
+
+.project-button,
+.github-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+
+
+
+/* footer styles */
+
+.footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: #fff;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
